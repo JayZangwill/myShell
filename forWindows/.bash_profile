@@ -1,3 +1,7 @@
+if test -f ~/var.sh; then
+  . ~/var.sh
+fi
+
 alias t="git tag"
 alias pt="git push origin"
 alias p="git pull"
@@ -7,14 +11,39 @@ alias ni="npm i"
 alias ip="ipconfig|findstr 'IPv4 地址'|cut -f2 -d':'"
 alias cip="ip;ip|clip"
 alias cp="pwd;pwd|clip"
+alias n="npm run"
+alias sh="ssh root@${REMOTEIP}"
 
 reload() {
-  . ~/.bash_profile
+  . ~/.bashrc
 }
 
 o() {
   start ${1-.}
 }
+
+dr() {
+  git push origin --delete ${1}
+}
+
+db() {
+  git branch -D ${1}
+}
+
+cl() {
+  local url=${ENVS[$1]}
+
+  echo $url|clip
+  echo $url
+}
+
+cs() {
+  local url=${ENVS[$1]}
+
+  echo "$url$2"|clip
+  echo "$url$2"
+}
+
 
 #!/bin/bash
 ###-begin-npm-completion-###
